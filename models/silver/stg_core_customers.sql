@@ -1,3 +1,7 @@
+{{ config(
+    unique_key='customer_id'
+) }}
+
 with raw_source as (
     select * from {{ source('bronze_layer', 'raw_customers_batch') }}
 ),
