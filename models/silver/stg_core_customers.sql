@@ -13,6 +13,12 @@ renamed_and_cast as (
         raw_payload:kyc_verified::boolean as is_kyc_verified,
         ingested_at as loaded_at
     from raw_source
+),
+
+-- Deduplicate identical records by keeping the most recently ingested row
+deduplicated as (
+    select * from renamed_and_cast
+    qualify row_number() over (partition by customer_id order by loaded_at desc) = 1
 )
 
-select * from renamed_and_cast
+select * from deduplicated
