@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_core_customers
+    description: "Cleansed and standardized core customer banking profiles."
+    columns:
+      - name: customer_id
+        description: "Primary key for the customer."
+        tests:
+          - unique
+          - not_null
+      - name: account_balance
+        description: "Total account balance in USD."
+        tests:
+          - not_null
+
+  - name: gld_customer_360
+    description: "Aggregated Customer 360 view for Power BI reporting."
+    columns:
+      - name: customer_id
+        description: "Primary key. Must be absolutely unique in the Gold layer."
+        tests:
+          - unique
+          - not_null
