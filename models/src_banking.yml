@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: bronze_layer
+    database: ENTERPRISE_BANKING_DB
+    schema: BRONZE
+    tables:
+      - name: raw_customers_batch
+        description: "Nightly core banking customer batch data ingested natively from AWS S3 as compressed Parquet."
+      
+      - name: raw_mobile_telemetry
+        description: "High-velocity, deeply nested JSON clickstream logs tracking user actions on the mobile banking application."
